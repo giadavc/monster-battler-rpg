@@ -1,0 +1,56 @@
+package it.unicam.cs.mpgc.rpg126362.model;
+
+/**
+ * Rappresenta una creatura con le sue statistiche di combattimento.
+ * Responsabilità: gestire HP, attacco, buff e stato della creatura.
+ */
+public class Creature {
+
+    private final String name;
+    private int maxHp;
+    private int currentHp;
+    private int attack;
+    private int buffTurns;
+
+    public Creature(String name, int maxHp, int attack) {
+        this.name = name;
+        this.maxHp = maxHp;
+        this.currentHp = maxHp;
+        this.attack = attack;
+    }
+
+    public String getName()         { return name; }
+    public int getMaxHp()           { return maxHp; }
+    public int getCurrentHp()       { return currentHp; }
+    public int getAttack()          { return attack; }
+    public int getBuffTurns()       { return buffTurns; }
+    public boolean isBuffed()       { return buffTurns > 0; }
+    public boolean isDefeated()     { return currentHp <= 0; }
+
+    /** Restituisce l'attacco effettivo, incluso il bonus buff. */
+    public int getEffectiveAttack() { return attack + (isBuffed() ? 10 : 0); }
+
+    public void takeDamage(int dmg)  { currentHp = Math.max(0, currentHp - dmg); }
+    public void heal(int amount)     { currentHp = Math.min(maxHp, currentHp + amount); }
+    public void activateBuff()       { buffTurns = 2; }
+    public void tickBuff()           { if (buffTurns > 0) buffTurns--; }
+    public void resetBuff()          { buffTurns = 0; }
+    public void restoreFullHp()      { currentHp = maxHp; }
+
+    /** Applica il bonus vittoria: HP o ATK in base al numero di vittorie. */
+    public void applyWinBonus(int winCount) {
+        if (isDefeated()) return;
+        if (winCount % 2 == 1) attack += 5;
+        else maxHp += 5;
+    }
+
+    public void setCurrentHp(int hp)   { this.currentHp = Math.max(0, Math.min(maxHp, hp)); }
+    public void setMaxHp(int maxHp)    { this.maxHp = maxHp; }
+    public void setAttack(int attack)  { this.attack = attack; }
+
+    @Override
+    public String toString() {
+        return name + " [HP:" + currentHp + "/" + maxHp + " ATK:" + getEffectiveAttack() + "]";
+    }
+}
+

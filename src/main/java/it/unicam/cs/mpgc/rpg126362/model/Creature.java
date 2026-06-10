@@ -1,9 +1,9 @@
 package it.unicam.cs.mpgc.rpg126362.model;
 
 /**
- * Rappresenta una creatura con le sue statistiche di combattimento.
- * Responsabilità: gestire HP, attacco, buff e stato della creatura.
- */
+* Represents a creature with its combat stats.
+* Responsibilities: Manage the creature's HP, attack, buffs, and status.
+*/
 public class Creature {
 
     private final String name;
@@ -27,7 +27,7 @@ public class Creature {
     public boolean isBuffed()       { return buffTurns > 0; }
     public boolean isDefeated()     { return currentHp <= 0; }
 
-    /** Restituisce l'attacco effettivo, incluso il bonus buff. */
+    /** Returns the effective attack, including the buff bonus. */
     public int getEffectiveAttack() { return attack + (isBuffed() ? 10 : 0); }
 
     public void takeDamage(int dmg)  { currentHp = Math.max(0, currentHp - dmg); }
@@ -37,7 +37,7 @@ public class Creature {
     public void resetBuff()          { buffTurns = 0; }
     public void restoreFullHp()      { currentHp = maxHp; }
 
-    /** Applica il bonus vittoria: HP o ATK in base al numero di vittorie. */
+    /** Applies the win bonus: HP or ATK based on the number of wins. */
     public void applyWinBonus(int winCount) {
         if (isDefeated()) return;
         if (winCount % 2 == 1) attack += 5;

@@ -5,7 +5,13 @@ import java.util.List;
 
 import it.unicam.cs.mpgc.rpg126362.model.*;
 
-
+/**
+* DTO for saving and loading JSON:
+* Serialize and deserialize {@link GameState}
+*
+* Depends on {@link CreatureFactory} to rebuild creatures on load,
+* without knowing the details of the actual implementation.
+*/
 public class SaveData {
 
     public String trainerName;
@@ -53,13 +59,13 @@ public class SaveData {
     public GameState toGameState(CreatureFactory factory) {
         CreatureData first = team.get(0);
         Creature starter = factory.createCreature(first.name);
-        
+         applyStats(starter, first);
 
         Player player = new Player(trainerName, starter);
         for (int i = 1; i < team.size(); i++) {
             CreatureData cd = team.get(i);
             Creature c = factory.createCreature(cd.name);
-           
+            applyStats(c, cd);
             player.addCreature(c);
         }
         player.setWinCount(winCount);
@@ -75,5 +81,9 @@ public class SaveData {
         return battleSnapshot != null ? battleSnapshot : BattleSnapshot.empty();
     }
 
- 
+    private void applyStats(Creature creature, CreatureData data) {
+        creature.setMaxHp(data.maxHp);
+        creature.setAttack(data.attack);
+        creature.setCurrentHp(data.currentHp);
+    }
 }

@@ -38,5 +38,17 @@ public class JsonGameRepository implements GameRepository {
     public SaveData load() throws IOException {
         return gson.fromJson(Files.readString(SAVE_FILE), SaveData.class);
     }
+    @Override
+    public boolean hasSave() {
+        return Files.exists(SAVE_FILE);
+    }
 
+    @Override
+    public void deleteSave() {
+        try {
+            Files.deleteIfExists(SAVE_FILE);
+        } catch (IOException e) {
+            System.err.println("Impossibile eliminare il salvataggio: " + e.getMessage());
+        }
+    }
 }

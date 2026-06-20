@@ -58,4 +58,14 @@ public class VictoryHandler {
 
         return msg.toString();
         }
+        /**
+* Processes player defeat: Updates global statistics.
+* @return the game over message
+*/
+    public String processDefeat() {
+            StatsRepository.Stats stats = statsRepository.load();
+        stats.losses++;
+        statsRepository.save(stats);
+        return "Tutte le tue creature sono state sconfitte. Game Over.";
+    }
 }

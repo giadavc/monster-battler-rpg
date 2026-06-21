@@ -20,4 +20,7 @@ public interface IGameController {
 
     GameSaveService getGameSaveService();
 
+    String handleVictory();
+
+    String handleDefeat();
 }

@@ -6,6 +6,13 @@ import it.unicam.cs.mpgc.rpg126362.model.*;
 import it.unicam.cs.mpgc.rpg126362.persistence.JsonGameRepository;
 import it.unicam.cs.mpgc.rpg126362.persistence.JsonStatsRepository;
 
+/**
+* Main game controller: Manages the launch, loading, and progression flow.
+* Responsibilities: Coordinate transitions between game phases,
+* delegating to {@link GameSaveService} for persistence,
+* to {@link BattleController} for combat,
+* and {@link VictoryHandler} for post-battle consequences.
+*/
 public class GameController implements IGameController {
 
     private final GameSaveService gameSaveService;

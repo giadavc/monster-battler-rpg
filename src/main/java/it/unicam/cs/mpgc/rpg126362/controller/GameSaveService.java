@@ -47,7 +47,7 @@ public class GameSaveService {
     return baseBattle;
     }
 
-    /** Salva lo stato corrente, includendo lo stato del nemico dalla battaglia in corso. */
+   /** Saves the current state, including the enemy state from the current battle. */
     public void saveState(GameState state, IBattleController battleController, String battleLog) throws IOException {
         BattleSnapshot battleSnapshot = BattleSnapshot.empty();
         if (battleController != null && battleController.getBattle() != null) {

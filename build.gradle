@@ -1,12 +1,29 @@
 plugins {
     id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.1.0'
 }
 
-group = 'org.example'
-version = '1.0-SNAPSHOT'
+group = 'it.unicam.cs.mpgc.rpg126362'
+version = '1.0.0'
 
 repositories {
     mavenCentral()
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+javafx {
+    version = '25'
+    modules = ['javafx.controls']
+}
+
+application {
+    mainClass = 'it.unicam.cs.mpgc.rpg126362.view.App'  
 }
 
 dependencies {

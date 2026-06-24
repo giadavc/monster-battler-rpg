@@ -1,7 +1,6 @@
 # 🎮 Monster Battler RPG
 
-Monster Battler RPG è un gioco di ruoli a turni sviluppato in Java con JavaFX.
-Il giocatore sceglie un nome e una creatura iniziale, poi affronta battaglie su due fasi narrative (Early Game e Late Game), sblocca nuove creature progredendo e può salvare e ricaricare la partita in qualsiasi momento. 
+Monster Battler RPG è un gioco di ruoli in cui l giocatore sceglie un nome e una creatura iniziale, poi affronta battaglie su due fasi narrative (Early Game e Late Game), sblocca nuove creature progredendo e può salvare e ricaricare la partita in qualsiasi momento. 
 
 ---
 
@@ -52,8 +51,8 @@ ChatGPT è stato utilizzato principalmente come supporto concettuale e creativo:
 
 * **Testi di gioco** — per ottenere suggerimenti riguardanti descrizioni narrative, storia introduttiva, nomi delle creature e testi presenti nei menu, successivamente selezionati e modificati in base al tono desiderato.
 
-**Ogni soluzione proposta è stata attentamente analizzata, compresa e, dove necessario, modificata prima di essere integrata nel progetto.** Gli strumenti di AI hanno svolto il ruolo di supporto allo studio, al confronto e alla risoluzione di problemi, senza sostituire il lavoro di progettazione e sviluppo.
-
+**Ogni soluzione proposta è stata attentamente analizzata, compresa e modificata prima di essere integrata nel progetto.**
+Gli strumenti di AI hanno svolto il ruolo di supporto allo studio, al confronto e alla risoluzione di problemi.
 ---
 
 📌 Per una descrizione più dettagliata dell'utilizzo dell'AI, consultare la **Wiki del repository**.

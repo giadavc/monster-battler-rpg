@@ -170,13 +170,18 @@ public class MainMenuView {
         cards.setAlignment(Pos.CENTER);
         for (String[] s : new String[][]{{"FireWolf","100","18"},{"AquaTurtle","120","14"},{"NatureFox","110","16"}})
             cards.getChildren().add(creatureCard(s[0], s[1], s[2]));
-
+        Text hint = new Text("Ogni creatura ha un diverso equilibrio tra vita e attacco.\n"
+                + "Non esiste la scelta giusta: dipende dal tuo stile di gioco.\n"
+                + "Preferisci resistere a lungo o colpire forte fin dall'inizio?");
+        hint.setFont(Font.font("Georgia", 17));
+        hint.setFill(Color.web("#cbd5e1"));
+        hint.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
         Button startBtn = new Button("INIZIA NUOVA PARTITA");
         startBtn.setStyle(btnStyle("#e94560"));
         startBtn.setOnAction(e -> startGame());
 
         VBox box = card();
-        box.getChildren().addAll(sectionTitle("2. Scegli la tua Creatura Iniziale"), cards, startBtn);
+        box.getChildren().addAll(sectionTitle("2. Scegli la tua Creatura Iniziale"), hint, cards, startBtn);
         return box;
     }
 

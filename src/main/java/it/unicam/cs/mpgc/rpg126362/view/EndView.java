@@ -9,6 +9,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 import javafx.stage.Stage;
 
+/**
+* End-of-Game Screen: Displays the victory or game-over message.
+*/
 public class EndView {
 
     private final Stage stage;

@@ -23,7 +23,6 @@ public class Creature {
     public int getMaxHp()           { return maxHp; }
     public int getCurrentHp()       { return currentHp; }
     public int getAttack()          { return attack; }
-    public int getBuffTurns()       { return buffTurns; }
     public boolean isBuffed()       { return buffTurns > 0; }
     public boolean isDefeated()     { return currentHp <= 0; }
 

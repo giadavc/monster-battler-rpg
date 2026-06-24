@@ -46,7 +46,7 @@ public class MainMenuView {
         root.setBottom(buildFooter());
 
         renderStep();
-        stage.setScene(new Scene(root, 900, 650));
+        stage.setScene(new Scene(root, 1000, 650));
         stage.show();
     }
 
@@ -65,63 +65,71 @@ public class MainMenuView {
     }
 
     private VBox buildFooter() {
-        Button loadBtn = new Button("CARICA PARTITA");
-        loadBtn.setStyle(btnStyle("#0f3460"));
-        loadBtn.setDisable(!controller.getGameSaveService().hasSave());
-        loadBtn.setOnAction(e -> {
-            try {
-                controller.loadGame();
-                new BattleView(stage, controller).show();
-            } catch (IOException ex) {
-                alert("Caricamento fallito: " + ex.getMessage());
-            }
-        });
+    Button loadBtn = new Button("CARICA PARTITA");
+    loadBtn.setStyle(btnStyle("#0f3460"));
+    loadBtn.setMinWidth(Region.USE_PREF_SIZE);
+    loadBtn.setDisable(!controller.getGameSaveService().hasSave());
+    loadBtn.setOnAction(e -> {
+        try {
+            controller.loadGame();
+            new BattleView(stage, controller).show();
+        } catch (IOException ex) {
+            alert("Caricamento fallito: " + ex.getMessage());
+        }
+    });
 
-        backBtn = new Button("INDIETRO");
-        backBtn.setStyle(btnStyle("#334155"));
-        backBtn.setOnAction(e -> { if (step > 0) { step--; renderStep(); } });
+    backBtn = new Button("INDIETRO");
+    backBtn.setStyle(btnStyle("#334155"));
+    backBtn.setMinWidth(Region.USE_PREF_SIZE);
+    backBtn.setOnAction(e -> { if (step > 0) { step--; renderStep(); } });
 
-        nextBtn = new Button("AVANTI");
-        nextBtn.setStyle(btnStyle("#e94560"));
-        nextBtn.setOnAction(e -> { if (step < 1) { step++; renderStep(); } });
+    nextBtn = new Button("AVANTI");
+    nextBtn.setStyle(btnStyle("#e94560"));
+    nextBtn.setMinWidth(Region.USE_PREF_SIZE);
+    nextBtn.setOnAction(e -> { if (step < 1) { step++; renderStep(); } });
 
-        HBox btnRow = new HBox(12, loadBtn, backBtn, nextBtn);
-        btnRow.setAlignment(Pos.CENTER_RIGHT);
+    HBox btnRow = new HBox(12, loadBtn, backBtn, nextBtn);
+    btnRow.setAlignment(Pos.CENTER_RIGHT);
 
-        StatsRepository.Stats stats = statsRepository.load();
-        GridPane statsTable = buildStatsTable(stats);
+    StatsRepository.Stats stats = statsRepository.load();
+    GridPane statsTable = buildStatsTable(stats);
 
-        HBox footerRow = new HBox(50, statsTable, btnRow);
-        footerRow.setAlignment(Pos.CENTER_RIGHT);
-        HBox.setHgrow(statsTable, Priority.ALWAYS);
+    HBox footerRow = new HBox(50, statsTable, btnRow);
+    footerRow.setAlignment(Pos.CENTER_RIGHT);
 
-        VBox footer = new VBox(footerRow);
-        footer.setPadding(new Insets(12, 0, 0, 0));
-        return footer;
+    VBox footer = new VBox(footerRow);
+    footer.setPadding(new Insets(12, 0, 0, 0));
+    return footer;
     }
+    
     private GridPane buildStatsTable(StatsRepository.Stats stats) {
-        GridPane table = new GridPane();
-        table.setHgap(20); table.setVgap(5);
-        table.setAlignment(Pos.CENTER_LEFT);
-        table.setStyle("-fx-background-color:#16213e;-fx-padding:10;-fx-background-radius:8;"
-                + "-fx-border-color:#334155;-fx-border-radius:8;-fx-border-width:1;");
+    GridPane table = new GridPane();
+    table.setHgap(12); table.setVgap(5);
+    table.setAlignment(Pos.CENTER_LEFT);
+    table.setMinWidth(400);
+    table.setStyle("-fx-background-color:#16213e;-fx-padding:10;-fx-background-radius:8;"
+            + "-fx-border-color:#334155;-fx-border-radius:8;-fx-border-width:1;");
 
-        Label lTitle = new Label("Statistiche");
-        lTitle.setTextFill(Color.web("#e94560"));
-        lTitle.setFont(Font.font("Arial Black", FontWeight.BOLD, 12));
+    Label lTitle = new Label("Statistiche");
+    lTitle.setTextFill(Color.web("#e94560"));
+    lTitle.setFont(Font.font("Arial Black", FontWeight.BOLD, 12));
+    lTitle.setMinWidth(Region.USE_PREF_SIZE);
 
-        Label lWins   = styledLabel("Vittorie:");
-        Label vWins   = boldLabel(String.valueOf(stats.wins));
-        Label lLosses = styledLabel("Sconfitte:");
-        Label vLosses = boldLabel(String.valueOf(stats.losses));
-        Label lDate   = styledLabel("Ultima partita:");
-        Label vDate   = boldLabel(stats.lastDate);
+    Label lWins   = styledLabel("Vittorie:");
+    Label vWins   = boldLabel(String.valueOf(stats.wins));
+    Label lLosses = styledLabel("Sconfitte:");
+    Label vLosses = boldLabel(String.valueOf(stats.losses));
+    Label lDate   = styledLabel("Ultima partita:");
+    Label vDate   = boldLabel(stats.lastDate);
 
-        table.add(lTitle,  0, 0, 2, 1);
-        table.add(lWins,   0, 1); table.add(vWins,   1, 1);
-        table.add(lLosses, 2, 1); table.add(vLosses, 3, 1);
-        table.add(lDate,   4, 1); table.add(vDate,   5, 1);
-        return table;
+    for (Label l : new Label[]{lWins, vWins, lLosses, vLosses, lDate, vDate})
+        l.setMinWidth(Region.USE_PREF_SIZE);
+
+    table.add(lTitle,  0, 0, 6, 1);
+    table.add(lWins,   0, 1); table.add(vWins,   1, 1);
+    table.add(lLosses, 2, 1); table.add(vLosses, 3, 1);
+    table.add(lDate,   4, 1); table.add(vDate,   5, 1);
+    return table;
     }
 
     private void renderStep() {

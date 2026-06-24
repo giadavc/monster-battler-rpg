@@ -47,7 +47,7 @@ public void show() {
         }
 
         refreshUI();
-        stage.setScene(new Scene(root, 800, 620));
+        stage.setScene(new Scene(root, 900, 620));
         stage.show();
     }
 

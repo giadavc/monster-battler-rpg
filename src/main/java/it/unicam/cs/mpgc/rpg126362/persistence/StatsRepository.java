@@ -11,7 +11,6 @@ Stats load();
 /** Saves statistics, updating the data from the last game. */
 void save(Stats stats);
 
-/** DTO with global statistics data. */
   class Stats {
         public int wins = 0;
         public int losses = 0;

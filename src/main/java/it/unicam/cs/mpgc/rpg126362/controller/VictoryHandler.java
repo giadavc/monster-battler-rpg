@@ -58,7 +58,8 @@ public class VictoryHandler {
 
         return msg.toString();
         }
-        /**
+        
+/**
 * Processes player defeat: Updates global statistics.
 * @return the game over message
 */

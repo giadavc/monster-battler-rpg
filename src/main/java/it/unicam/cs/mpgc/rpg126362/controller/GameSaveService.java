@@ -25,7 +25,6 @@ public class GameSaveService {
         this.factory = factory;
     }
 
-    /** Load game state from repository. */
     public GameState loadState() throws IOException {
         SaveData saveData = repository.load();
         loadedBattleSnapshot = saveData.toBattleSnapshot();

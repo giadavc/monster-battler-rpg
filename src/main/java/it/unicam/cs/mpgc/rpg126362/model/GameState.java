@@ -20,17 +20,10 @@ public class GameState {
     public GamePhase getPhase()    { return phase; }
     public int getBattleIndex()    { return battleIndex; }
     public boolean isGameWon()     { return gameWon; }
-
-/** Returns the current battle's global number (1-4). */
-    
     public int getGlobalBattle() {
         return (phase == GamePhase.EARLY_GAME ? 0 : 2) + battleIndex + 1;
     }
 
-/**
-* Advances to the next battle.
-* Returns true if the phase has changed (e.g., from EARLY_GAME to LATE_GAME).
-*/
     public boolean advance() {
         battleIndex++;
         if (battleIndex >= 2) {

@@ -28,7 +28,6 @@ public class SaveData {
         public int maxHp, currentHp, attack;
     }
 
-    /** Constructs a SaveData from the current game state and the battle snapshot. */
     public static SaveData from(GameState state, BattleSnapshot battleSnapshot) {
         SaveData d = new SaveData();
         Player p = state.getPlayer();

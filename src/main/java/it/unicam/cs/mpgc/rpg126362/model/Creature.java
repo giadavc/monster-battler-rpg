@@ -36,7 +36,6 @@ public class Creature {
     public void resetBuff()          { buffTurns = 0; }
     public void restoreFullHp()      { currentHp = maxHp; }
 
-    /** Applies the win bonus: HP or ATK based on the number of wins. */
     public void applyWinBonus(int winCount) {
         if (isDefeated()) return;
         if (winCount % 2 == 1) attack += 5;
